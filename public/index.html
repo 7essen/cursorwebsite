@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الإلكترونيات الأنيق</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>متجر الإلكترونيات</h1>
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="ابحث هنا...">
+                    <button id="searchButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+                <button id="cartButton" class="cart-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cartCount" class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="admin-login">
+                <h2>تسجيل دخول الأدمن</h2>
+                <input type="text" id="adminUsername" placeholder="اسم المستخدم">
+                <input type="password" id="adminPassword" placeholder="كلمة المرور">
+                <button id="adminLoginButton">تسجيل الدخول</button>
+            </div>
+
+            <section class="featured-products">
+                <h2>المنتجات المميزة</h2>
+                <div class="grid" id="productGrid">
+                    <!-- Dynamic products will be added here -->
+                </div>
+            </section>
+
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">كل المنتجات</button>
+                <button class="category-btn" data-category="phones">الهواتف</button>
+                <button class="category-btn" data-category="laptops">اللابتوب</button>
+                <button class="category-btn" data-category="accessories">الملحقات</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="product-modal-details"></div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

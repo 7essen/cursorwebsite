@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة منتج</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>إضافة منتج جديد</h1>
+    <form id="productForm">
+        <input type="text" id="name" placeholder="اسم المنتج" required>
+        <input type="number" id="price" placeholder="سعر المنتج" required>
+        <input type="text" id="description" placeholder="وصف المنتج" required>
+        <input type="text" id="category" placeholder="فئة المنتج" required>
+        <input type="text" id="image" placeholder="رابط الصورة" required>
+        <button type="submit">إضافة منتج</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('productForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+            const description = document.getElementById('description').value;
+            const category = document.getElementById('category').value;
+            const image = document.getElementById('image').value;
+
+            const response = await fetch('http://localhost:5000/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, price, description, category, image }),
+            });
+
+            const data = await response.json();
+            const messageDiv = document.getElementById('message');
+
+            if (response.ok) {
+                messageDiv.innerHTML = `<p style="color: green;">تم إضافة المنتج بنجاح: ${data.name}</p>`;
+                document.getElementById('productForm').reset(); // إعادة تعيين النموذج
+            } else {
+                messageDiv.innerHTML = `<p style="color: red;">حدث خطأ: ${data}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
